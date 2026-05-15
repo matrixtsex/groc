@@ -1,0 +1,34 @@
+#!/bin/sh
+set -eu
+
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+
+mkdir -p "$HOME/.groc" "$HOME/.local/bin" "$HOME/.local/share/groc"
+cp "$repo_root/config/groc.config.toml" "$HOME/.groc/config.toml"
+rm -rf "$HOME/.local/share/groc/groc"
+cp -R "$repo_root/groc" "$HOME/.local/share/groc/groc"
+cp "$repo_root/bin/groc-bridge" "$HOME/.local/bin/groc-bridge"
+cp "$repo_root/bin/groc" "$HOME/.local/bin/groc"
+chmod +x "$HOME/.local/bin/groc-bridge" \
+  "$HOME/.local/bin/groc"
+
+echo "installed groc"
+
+case ":$PATH:" in
+  *":$HOME/.local/bin:"*) ;;
+  *)
+    echo "warning: $HOME/.local/bin is not on PATH"
+    echo "add this to your shell profile:"
+    echo "  export PATH=\"\$HOME/.local/bin:\$PATH\""
+    ;;
+esac
+
+if ! command -v grok >/dev/null 2>&1 && [ ! -x "$HOME/.local/bin/grok" ]; then
+  echo "warning: grok CLI was not found; set GROC_GROK_BIN=/path/to/grok if needed"
+fi
+
+if ! command -v codex >/dev/null 2>&1; then
+  echo "warning: codex CLI was not found; install it or set GROC_CODEX_BIN=/path/to/codex"
+fi
+
+echo "next: groc doctor"

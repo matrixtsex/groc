@@ -1,0 +1,45 @@
+name: Feature request
+description: Suggest an improvement to Groc.
+title: "[feature] "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please describe the problem and the smallest useful improvement.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What pain point are you trying to solve?
+      placeholder: Describe the current limitation.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should Groc do?
+      placeholder: Describe expected behavior and CLI UX.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Workarounds or other approaches you considered.
+      placeholder: Optional alternatives.
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: User impact
+      description: Who benefits and how?
+      placeholder: Practical impact on end users.
+    validations:
+      required: true
+

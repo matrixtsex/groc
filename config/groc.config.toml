@@ -1,0 +1,80 @@
+# Default install-time config. Groc regenerates ~/.groc/config.toml at runtime
+# so environment overrides such as GROC_BRIDGE_PORT stay in sync.
+
+[models]
+default = "gpt-5.5"
+
+[subagents]
+enabled = true
+default_model = "gpt-5.5"
+
+[features]
+telemetry = false
+lsp_tools = false
+
+[memory]
+enabled = false
+
+[model."gpt-5.5"]
+model = "gpt-5.5"
+base_url = "http://127.0.0.1:11435/v1"
+name = "GPT-5.5 (ChatGPT OAuth)"
+api_key = "local"
+api_backend = "responses"
+context_window = 1000000
+
+[model."gpt-5.4"]
+model = "gpt-5.4"
+base_url = "http://127.0.0.1:11435/v1"
+name = "GPT-5.4 (ChatGPT OAuth)"
+api_key = "local"
+api_backend = "responses"
+context_window = 1000000
+
+[model."gpt-5.4-mini"]
+model = "gpt-5.4-mini"
+base_url = "http://127.0.0.1:11435/v1"
+name = "GPT-5.4 Mini (ChatGPT OAuth)"
+api_key = "local"
+api_backend = "responses"
+context_window = 1000000
+
+[model."gpt-5.3"]
+model = "gpt-5.3"
+base_url = "http://127.0.0.1:11435/v1"
+name = "GPT-5.3 (ChatGPT OAuth)"
+api_key = "local"
+api_backend = "responses"
+context_window = 1000000
+
+[model."gpt-5.3-spark"]
+model = "gpt-5.3-spark"
+base_url = "http://127.0.0.1:11435/v1"
+name = "GPT-5.3 Spark (ChatGPT OAuth)"
+api_key = "local"
+api_backend = "responses"
+context_window = 1000000
+
+[model."gpt-5.2"]
+model = "gpt-5.2"
+base_url = "http://127.0.0.1:11435/v1"
+name = "GPT-5.2 (ChatGPT OAuth)"
+api_key = "local"
+api_backend = "responses"
+context_window = 1000000
+
+# Grok 0.1.210 may still make internal fallback requests under this model id.
+# Keep those requests on Groc's local ChatGPT OAuth bridge instead of xAI auth.
+[model.grok-build]
+model = "gpt-5.5"
+base_url = "http://127.0.0.1:11435/v1"
+name = "GPT-5.5 (Groc fallback via ChatGPT OAuth)"
+api_key = "local"
+api_backend = "responses"
+context_window = 1000000
+
+[ui]
+max_thoughts_width = 120
+fork_secondary_model = "gpt-5.5"
+yolo = false
+compact_mode = false

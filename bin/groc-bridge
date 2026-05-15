@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -eu
+
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+repo_root=$(CDPATH= cd -- "$script_dir/.." && pwd)
+installed_root="${GROC_PYTHONPATH:-$HOME/.local/share/groc}"
+
+if [ -d "$repo_root/groc" ]; then
+  export PYTHONPATH="$repo_root${PYTHONPATH:+:$PYTHONPATH}"
+elif [ -d "$installed_root/groc" ]; then
+  export PYTHONPATH="$installed_root${PYTHONPATH:+:$PYTHONPATH}"
+fi
+
+exec python3 -m groc.bridge.server "$@"
